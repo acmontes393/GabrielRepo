@@ -42,4 +42,7 @@ sub_cath <- function(x){
 catholic <- sub_cath(swiss)
 mean(sub_cath)
 summary(sub_cath)
+
+print("hello world")
+
 #End of file
