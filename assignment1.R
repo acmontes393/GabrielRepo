@@ -9,3 +9,5 @@ library(ggplot2)
 
 #Load Swiss
 data(swiss)
+
+mean(swiss$Catholic)
