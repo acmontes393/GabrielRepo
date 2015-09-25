@@ -1,0 +1,55 @@
+---
+title: "Catholics and Fertility"
+author: "Max Callaghan"
+date: "September 25, 2015"
+output: ioslides_presentation
+---
+
+```{r echo=FALSE}
+
+library(ggplot2)
+data(swiss)
+source("functions.R")
+
+```
+
+## Data
+We are analysing the swiss datset. We want to look at the relationship between catholicism and fertility
+
+```{r echo=FALSE}
+
+summary(swiss)
+
+```
+
+## Catholicism
+The distribution of catholic density by canton is bimodal
+
+```{r echo=FALSE}
+
+hist(swiss$Catholic)
+
+```
+
+## Catholics
+- We assume, given that the swiss dataset is from 1888, that the proportion of protestants in each canton is one minus catholic, and that swiss cantons are either mostly catholic or mostly protestant, with very few mixed cantons.
+
+## Fertility
+Fertility is fairly normally distributed with a mean of `r mean(swiss$Fertility,na.rm=TRUE)` and a standard error of `r std.error(swiss$Fertility)`
+
+```{r echo=FALSE}
+
+hist(swiss$Fertility)
+
+```
+
+## Relationship between Catholicism and Fertility
+Plotting Fertility and Catholicism gives us a weird graph
+
+```{r echo=FALSE, warning=FALSE}
+
+ggplot(swiss, aes(Catholic,Fertility))+geom_point() + geom_smooth() + theme_bw()
+
+```
+
+
