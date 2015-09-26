@@ -46,7 +46,7 @@ hist(swiss$Fertility)
 ## Relationship between Catholicism and Fertility
 Plotting Fertility and Catholicism gives us a weird graph
 
-```{r echo=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 ggplot(swiss, aes(Catholic,Fertility))+geom_point() + geom_smooth() + theme_bw()
 
