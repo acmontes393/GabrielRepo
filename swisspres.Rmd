@@ -1,6 +1,6 @@
 ---
 title: "Catholics and Fertility"
-author: "Max Callaghan"
+author: "Max Callaghan & Gabriel Tarriba"
 date: "September 25, 2015"
 output: ioslides_presentation
 ---
@@ -17,7 +17,7 @@ source("functions.R")
 We are analysing the swiss datset. We want to look at the relationship between catholicism and fertility
 
 ```{r echo=FALSE}
-
+#
 summary(swiss)
 
 ```
