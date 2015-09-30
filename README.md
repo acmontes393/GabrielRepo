@@ -19,6 +19,8 @@ We looked at two datasets: swiss and mtcars.
 
 In both analyses, we look at the distribution of our relevant variables and perform some transformations (e.g. we combine existing variables to create new ones). For the case of swiss, we run a simple bivariate OLS regression to explore the relationship between religious concentration (the proportion of the population of a canton who are members of the largest church) and fertility.
 
+Please note that our files link to the Functions file, in which we define the function Standard Error (std.error)
+
 ##Presentation of results
 
 We created two presentation with the results of our analysis:
