@@ -27,4 +27,5 @@ We created two presentation with the results of our analysis:
 
 * Click [here](https://cdn.rawgit.com/gtarriba/GabrielRepo/master/mtcarspres.html) to see the presentation of our analysis of the dataset mtcars
 
+The files swisspres and mtcarspres within this repository show our full analysis including R code.
 
