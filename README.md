@@ -17,7 +17,7 @@ We looked at two datasets: swiss and mtcars.
 * Swiss contains sociodemographic data of Swiss cantons from 1888. Our analysis focuses on the relationship between faith (Catholic or Protestant) and fertility
 * Mtcars has data about the characteristics of certain car models. We looked at the relationship between the transmission type of cars (Manual or Automatic) and their fuel efficiency.
 
-In both analyses, we look at the distribution of our relevant variables and perform some transformations (e.g. we combine existing variables to create new ones).
+In both analyses, we look at the distribution of our relevant variables and perform some transformations (e.g. we combine existing variables to create new ones). For the case of swiss, we run a simple bivariate OLS regression to explore the relationship between religious concentration (the proportion of the population of a canton who are members of the largest church) and fertility.
 
 ##Presentation of results
 
