@@ -7,6 +7,13 @@ output: ioslides_presentation
 
 ```{r echo=FALSE}
 
+try_user <- function(x,p) {
+  a <- try(setwd(p),silent=TRUE)
+}
+
+try_user("MC","~/Documents/hertie/datascience/assignment1")
+try_user("GT","/Users/Gabriel/Desktop/GabrielRepo")
+
 library(ggplot2)
 data(swiss)
 source("functions.R")

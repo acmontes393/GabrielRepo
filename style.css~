@@ -1,0 +1,3 @@
+table.rmdtable th {
+	font-size:50%
+}

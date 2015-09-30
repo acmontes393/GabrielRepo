@@ -2,10 +2,15 @@
 title: "Untitled"
 author: "Max Callaghan & Gabriel Tarriba"
 date: "September 30, 2015"
-output: ioslides_presentation
+output: 
+  ioslides_presentation:
+    css: style.css
 ---
 
 ```{r include=FALSE}
+
+library(ggplot2)
+library(knitr)
 
 try_user <- function(x,p) {
   a <- try(setwd(p),silent=TRUE)
@@ -14,8 +19,6 @@ try_user <- function(x,p) {
 try_user("MC","~/Documents/hertie/datascience/assignment1")
 try_user("GT","/Users/Gabriel/Desktop/GabrielRepo")
 
-
-
 source("functions.R")
 
 ```
@@ -23,26 +26,74 @@ source("functions.R")
 
 ## mtcars
 
-We looked at the mtcars dataset. Focusing on miles per gallon and automatic transmission
+We looked at the mtcars dataset (summary below). We focused on miles per gallon and automatic transmission 
 
-## mpg
+```{r echo=FALSE}
+summary(mtcars)
+```
+
+
+## Miles per Gallon
 
 Miles per gallon are right-skewed and the mean is `r mean(mtcars$mpg,na.rm=TRUE)` and a standard error of `r std.error(mtcars$mpg)`
 
-```{r}
+```{r echo=FALSE}
 
 hist(mtcars$mpg,breaks=10)
 
 ```
 
 
-```{r}
+## Automatic Transmission
 
-library(ggplot2)
+There are fewer automatic cars than manual cars.
 
-data(mtcars)
+```{r echo=FALSE}
+
+ggplot(mtcars, aes(factor(am))) + geom_bar()
+
+```
+
+## Automatic Transmission and Miles per Gallon
+
+A box and whisker plot seems to show that automatic cars are more efficient than manual cars
+
+```{r echo=FALSE}
 
 ggplot(mtcars,aes(factor(am),mpg)) + geom_boxplot()
+
+```
+
+## Automatic Transmission and Miles per Gallon
+
+A Welch Two Sample t-test shows that the probability that the difference in the mean mpg between the groups manual and automatic is due to random chance is less than 1 percent. We reject the null hypothesis that the means are equal
+
+```{r echo=FALSE}
+
+t.test(mtcars$mpg~mtcars$am)
+
+```
+
+## Efficiency index
+
+We create an index that compares the mpg in each car to the most efficient car in the sample and plot a box whisper chart by category
+
+```{r echo=FALSE}
+
+mtcars$eff_index <- mtcars$mpg/max(mtcars$mpg,na.rm=FALSE)*100
+
+mtcars$eff_cat <- cut(mtcars$eff_index,c(0,25,50,75,100),labels=c("very low","low","high","very high"))
+
+ggplot(mtcars,aes(factor(eff_cat),hp)) + geom_boxplot()
+
+```
+
+## Data
+Our dataset now looks like this:
+
+```{r echo=FALSE}
+
+kable(head(mtcars))
 
 ```
 
