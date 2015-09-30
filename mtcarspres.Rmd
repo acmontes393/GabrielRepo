@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "mtcars - Transmission, Fuel efficiency and Horsepower"
 author: "Max Callaghan & Gabriel Tarriba"
 date: "September 30, 2015"
 output: 
@@ -26,7 +26,7 @@ source("functions.R")
 
 ## mtcars
 
-We looked at the mtcars dataset (summary below). We focused on miles per gallon and automatic transmission 
+We looked at the mtcars dataset (summary below). We focused on miles per gallon, automatic transmission and horsepower 
 
 ```{r echo=FALSE}
 summary(mtcars)
