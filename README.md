@@ -13,7 +13,9 @@ Tasks:
 4. Finally, another pair must make a pull request and it should be discussed and merged. 
 
 ##Our analysis
-We looked at two datasets: swiss and mtcars. Swiss contains sociodemographic data of Swiss cantons from the late 1800s. Mtcars has data about the characteristics of certain car models. Our analysis on the swiss dataset focuses on the relationship between faith (Catholic or Protestant) and fertility. In mtcars we looked at the relationship between the transmission type of cars (Manual or Automatic) and their fuel efficiency.
+We looked at two datasets: swiss and mtcars. 
+* Swiss contains sociodemographic data of Swiss cantons from 1888. Our analysis focuses on the relationship between faith (Catholic or Protestant) and fertility
+* Mtcars has data about the characteristics of certain car models. We looked at the relationship between the transmission type of cars (Manual or Automatic) and their fuel efficiency.
 
 In both analyses, we look at the distribution of our relevant variables and perform some transformations (e.g. we combine existing variables to create new ones).
 
