@@ -5,7 +5,7 @@ date: "September 25, 2015"
 output: ioslides_presentation
 ---
 
-```{r echo=FALSE}
+```{r include=FALSE}
 
 try_user <- function(x,p) {
   a <- try(setwd(p),silent=TRUE)
@@ -15,6 +15,8 @@ try_user("MC","~/Documents/hertie/datascience/assignment1")
 try_user("GT","/Users/Gabriel/Desktop/GabrielRepo")
 
 library(ggplot2)
+library(knitr)
+library(texreg)
 data(swiss)
 source("functions.R")
 
@@ -24,7 +26,7 @@ source("functions.R")
 We are analysing the swiss datset. We want to look at the relationship between catholicism and fertility
 
 ```{r echo=FALSE}
-#
+
 summary(swiss)
 
 ```
@@ -34,7 +36,7 @@ The distribution of catholic density by canton is bimodal
 
 ```{r echo=FALSE}
 
-hist(swiss$Catholic)
+hist(swiss$Catholic,xlab="Catholic Density", main="Histogram of Catholic Density")
 
 ```
 
@@ -46,17 +48,49 @@ Fertility is fairly normally distributed with a mean of `r mean(swiss$Fertility,
 
 ```{r echo=FALSE}
 
-hist(swiss$Fertility)
+hist(swiss$Fertility, xlab="Fertility Rate", main="Histogram of Fertility Rate")
 
 ```
 
 ## Relationship between Catholicism and Fertility
-Plotting Fertility and Catholicism gives us a weird graph
+Plotting Fertility and Catholicism gives us strange results
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=5, fig.height=3.5}
 
 ggplot(swiss, aes(Catholic,Fertility))+geom_point() + geom_smooth() + theme_bw()
 
 ```
 
+## Relationship Religious Concentration and Fertility
+
+We create a new variable, religious concentration, and plot it as a dependent variable, here the relationship is much more as we expected
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=5, fig.height=3.5}
+
+swiss$religious_concentration <- ifelse(
+  swiss$Catholic > 50,
+  swiss$Catholic,
+  100 - swiss$Catholic
+)
+
+ggplot(swiss, aes(religious_concentration,Fertility)) +
+  geom_point() + 
+  geom_smooth() + 
+  theme_bw() +
+  xlab("Religious Concentration")
+
+```
+
+
+## Relationship Religious Concentration and Fertility
+
+A simple bivariate regression suggests that there is a statistacally significant relationship between religious concentration and fertility.
+
+```{r echo=FALSE, results='asis', warning=FALSE}
+
+reg1 <- lm(Fertility~religious_concentration,swiss)
+
+htmlreg(reg1,single.row=TRUE)
+
+```
 

@@ -1,5 +1,5 @@
 ---
-title: "mtcars - Transmission, Fuel efficiency and Horsepower"
+title: "mtcars - Transmission, Fuel Efficiency and Horsepower"
 author: "Max Callaghan & Gabriel Tarriba"
 date: "September 30, 2015"
 output: 
@@ -39,7 +39,7 @@ Miles per gallon are right-skewed and the mean is `r mean(mtcars$mpg,na.rm=TRUE)
 
 ```{r echo=FALSE}
 
-hist(mtcars$mpg,breaks=10)
+hist(mtcars$mpg,breaks=10,xlab="Miles per Gallon",main="Histogram of Miles per Gallon")
 
 ```
 
@@ -50,7 +50,10 @@ There are fewer automatic cars than manual cars.
 
 ```{r echo=FALSE}
 
-ggplot(mtcars, aes(factor(am))) + geom_bar()
+ggplot(mtcars, aes(factor(am))) + 
+  geom_bar() + 
+  xlab("Manual (0) or Automatic (1)") + 
+  theme_bw()
 
 ```
 
@@ -60,7 +63,11 @@ A box and whisker plot seems to show that automatic cars are more efficient than
 
 ```{r echo=FALSE}
 
-ggplot(mtcars,aes(factor(am),mpg)) + geom_boxplot()
+ggplot(mtcars,aes(factor(am),mpg)) + 
+  geom_boxplot() + 
+  xlab("Manual (0) or Automatic (1)") + 
+  ylab("Miles per Gallon") + 
+  theme_bw()
 
 ```
 
@@ -84,7 +91,10 @@ mtcars$eff_index <- mtcars$mpg/max(mtcars$mpg,na.rm=FALSE)*100
 
 mtcars$eff_cat <- cut(mtcars$eff_index,c(0,25,50,75,100),labels=c("very low","low","high","very high"))
 
-ggplot(mtcars,aes(factor(eff_cat),hp)) + geom_boxplot()
+ggplot(mtcars,aes(factor(eff_cat),hp)) + geom_boxplot() +
+  xlab("Efficiency Category") + 
+  ylab("Horsepower") + 
+  theme_bw()
 
 ```
 
