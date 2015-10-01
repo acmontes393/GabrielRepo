@@ -25,9 +25,9 @@ Please note that our R-Markdown files link to the Functions file, in which we de
 
 We created two presentation with the results of our analysis:
 
-* Click [here](https://cdn.rawgit.com/gtarriba/GabrielRepo/v0002/swisspres.html) to see the presentation of our analysis of the dataset Swiss
+* Click [here](https://cdn.rawgit.com/gtarriba/GabrielRepo/v0003/swisspres.html) to see the presentation of our analysis of the dataset Swiss
 
-* Click [here](https://cdn.rawgit.com/gtarriba/GabrielRepo/v0002/mtcarspres.html) to see the presentation of our analysis of the dataset mtcars
+* Click [here](https://cdn.rawgit.com/gtarriba/GabrielRepo/v0003/mtcarspres.html) to see the presentation of our analysis of the dataset mtcars
 
 The files swisspres and mtcarspres within this repository show our full analysis including R code.
 
