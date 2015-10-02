@@ -27,7 +27,7 @@ source("functions.R")
 
 ## mtcars
 
-We looked at the mtcars dataset (summary below). We focused on miles per gallon, automatic transmission and horsepower 
+We looked at the mtcars dataset (summary below). We want to explore the relationship between miles per gallon, automatic transmission and horsepower. 
 
 ```{r echo=FALSE}
 kable(summary(mtcars[,c("mpg","hp","am")]))
@@ -60,7 +60,7 @@ ggplot(mtcars, aes(factor(am))) +
 
 ## Automatic Transmission and Miles per Gallon
 
-A box and whisker plot seems to show that automatic cars are more efficient than manual cars
+A box and whisker plot seems to show that automatic cars are more fuel-efficient than manual cars
 
 ```{r echo=FALSE, fig.width=5, fig.height=4}
 
@@ -74,7 +74,7 @@ ggplot(mtcars,aes(factor(am),mpg)) +
 
 ## Automatic Transmission and Miles per Gallon
 
-A Welch Two Sample t-test shows that the probability that the difference in the mean mpg between the groups manual and automatic is due to random chance is less than 1 percent. We reject the null hypothesis that the means are equal
+A Welch Two Sample t-test shows that the probability that the difference in the mean mpg between the groups manual and automatic is due to random chance is less than 1 percent. We reject the null hypothesis that the means are equal. Thus we conclude that automatic cars are more fuel-efficient.
 
 ```{r echo=FALSE}
 
@@ -84,7 +84,7 @@ pander(t.test(mtcars$mpg~mtcars$am))
 
 ## Efficiency index
 
-We create an index that compares the mpg in each car to the most efficient car in the sample and plot a box whisper chart by category
+We create an index that compares the mpg in each car to the most efficient car in the sample. We name this variable efficiency index (in code eff_index). Then we create a categorical variable called efficiency category (in code eff_cat), which contains the categories "very low", "low", "high" and "very high" according to four quartiles the efficiency index variable
 
 ```{r echo=FALSE, fig.width=5, fig.height=4}
 
