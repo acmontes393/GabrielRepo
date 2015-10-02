@@ -23,7 +23,7 @@ source("functions.R")
 ```
 
 ## Data
-We are analysing the swiss datset. We want to look at the relationship between catholicism and fertility
+We are analysing the swiss datset. We want to look at the relationship between Catholicism and fertility
 
 ```{r echo=FALSE}
 
@@ -32,7 +32,7 @@ summary(swiss)
 ```
 
 ## Catholicism
-The distribution of catholic density by canton is bimodal
+The distribution of Catholic density (proportion of Catholics in total population) by canton is bimodal
 
 ```{r echo=FALSE}
 
@@ -41,7 +41,7 @@ hist(swiss$Catholic,xlab="Catholic Density", main="Histogram of Catholic Density
 ```
 
 ## Catholics
-- We assume, given that the swiss dataset is from 1888, that the proportion of protestants in each canton is one minus catholic, and that swiss cantons are either mostly catholic or mostly protestant, with very few mixed cantons.
+- We assume, given that the swiss dataset is from 1888, that the proportion of protestants in each canton is one minus the proportion of Catholics, and that swiss cantons are either mostly Catholic or mostly Protestant, with very few mixed cantons.
 
 ## Fertility
 Fertility is fairly normally distributed with a mean of `r mean(swiss$Fertility,na.rm=TRUE)` and a standard error of `r std.error(swiss$Fertility)`
@@ -63,7 +63,7 @@ ggplot(swiss, aes(Catholic,Fertility))+geom_point() + geom_smooth() + theme_bw()
 
 ## Relationship Religious Concentration and Fertility
 
-We create a new variable, religious concentration, and plot it as a dependent variable, here the relationship is much more as we expected
+We create a new variable, religious concentration, and plot it as a dependent variable, here the relationship is much more as we expected: concentration is related with fertility.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=5, fig.height=3.5}
 
@@ -84,7 +84,7 @@ ggplot(swiss, aes(religious_concentration,Fertility)) +
 
 ## Relationship Religious Concentration and Fertility
 
-A simple bivariate regression suggests that there is a statistacally significant relationship between religious concentration and fertility.
+A simple bivariate regression suggests that there is a statistically significant positiv relationship between religious concentration and fertility
 
 ```{r echo=FALSE, results='asis', warning=FALSE}
 
