@@ -7,17 +7,24 @@ output: ioslides_presentation
 
 ```{r include=FALSE}
 
-try_user <- function(x,p) {
+# define a function which quietly tries to set the working directory, without causing an error if it doesn't exist
+try_user <- function(p) {
   a <- try(setwd(p),silent=TRUE)
 }
 
-try_user("MC","~/Documents/hertie/datascience/assignment1")
-try_user("GT","/Users/Gabriel/Desktop/GabrielRepo")
+#try to set the working directory to either Max or Gabriel's local directory
+try_user("~/Documents/hertie/datascience/assignment1")
+try_user("/Users/Gabriel/Desktop/GabrielRepo")
 
+#load some libraries
 library(ggplot2)
 library(knitr)
 library(texreg)
+
+#load the swiss dataset
 data(swiss)
+
+#run a 'dynamically linked file' which contains a function we defined
 source("functions.R")
 
 ```
@@ -27,7 +34,8 @@ We are analysing the swiss datset. We want to look at the relationship between c
 
 ```{r echo=FALSE}
 
-summary(swiss)
+#summarise the swiss dataset
+kable(summary(swiss))
 
 ```
 
@@ -36,6 +44,7 @@ The distribution of catholic density by canton is bimodal
 
 ```{r echo=FALSE}
 
+#do a histogram of the variable 'Catholic'
 hist(swiss$Catholic,xlab="Catholic Density", main="Histogram of Catholic Density")
 
 ```
@@ -48,6 +57,7 @@ Fertility is fairly normally distributed with a mean of `r mean(swiss$Fertility,
 
 ```{r echo=FALSE}
 
+#do a histogram of fertility (above inline code computes mean and standard error)
 hist(swiss$Fertility, xlab="Fertility Rate", main="Histogram of Fertility Rate")
 
 ```
@@ -57,6 +67,7 @@ Plotting Fertility and Catholicism gives us strange results
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=5, fig.height=3.5}
 
+#plot Fertility against Catholicism with points, draw a smooth line, and make the plot monochrome
 ggplot(swiss, aes(Catholic,Fertility))+geom_point() + geom_smooth() + theme_bw()
 
 ```
@@ -67,12 +78,14 @@ We create a new variable, religious concentration, and plot it as a dependent va
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=5, fig.height=3.5}
 
+#define religious concentration conditionally upon whether Catholic is higher or imputed Protestant (100-Catholic) is higher
 swiss$religious_concentration <- ifelse(
   swiss$Catholic > 50,
   swiss$Catholic,
   100 - swiss$Catholic
 )
 
+#plot new religious concentration variable against fertility, with similar options to above
 ggplot(swiss, aes(religious_concentration,Fertility)) +
   geom_point() + 
   geom_smooth() + 
@@ -88,8 +101,10 @@ A simple bivariate regression suggests that there is a statistacally significant
 
 ```{r echo=FALSE, results='asis', warning=FALSE}
 
+#Do a bivariate regression where y = Fertility and x = religious_concentration
 reg1 <- lm(Fertility~religious_concentration,swiss)
 
+#report the results of the regression in a pretty table
 htmlreg(reg1,single.row=TRUE)
 
 ```

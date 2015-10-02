@@ -1,7 +1,4 @@
-table.rmdtable th {
-	font-size:50%
-}
-
-table.rmdtable td {
+/* select normal and header cells in a table of the class "rmdtable" and make the font smaller */
+table.rmdtable th, table.rmdtable td  {
 	font-size:50%
 }

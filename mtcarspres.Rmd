@@ -8,18 +8,21 @@ output:
 ---
 
 ```{r include=FALSE}
-
+#load some libraries
 library(ggplot2)
 library(knitr)
 library(pander)
 
+# define a function which quietly tries to set the working directory, without causing an error if it doesn't exist
 try_user <- function(x,p) {
   a <- try(setwd(p),silent=TRUE)
 }
 
+#try to set the working directory to either Max or Gabriel's local directory
 try_user("MC","~/Documents/hertie/datascience/assignment1")
 try_user("GT","/Users/Gabriel/Desktop/GabrielRepo")
 
+#run a 'dynamically linked file' which contains a function we defined
 source("functions.R")
 
 ```
@@ -30,7 +33,10 @@ source("functions.R")
 We looked at the mtcars dataset (summary below). We focused on miles per gallon, automatic transmission and horsepower 
 
 ```{r echo=FALSE}
+
+#summarise the variables we are interested in mtcars and put them into a pretty table
 kable(summary(mtcars[,c("mpg","hp","am")]))
+
 ```
 
 
@@ -40,6 +46,7 @@ Miles per gallon are right-skewed and the mean is `r mean(mtcars$mpg,na.rm=TRUE)
 
 ```{r echo=FALSE}
 
+#do a histogram of mpg
 hist(mtcars$mpg,breaks=10,xlab="Miles per Gallon",main="Histogram of Miles per Gallon")
 
 ```
@@ -51,6 +58,7 @@ There are fewer automatic cars than manual cars.
 
 ```{r echo=FALSE}
 
+#do a bar chart of transmission
 ggplot(mtcars, aes(factor(am))) + 
   geom_bar() + 
   xlab("Manual (0) or Automatic (1)") + 
@@ -64,6 +72,7 @@ A box and whisker plot seems to show that automatic cars are more efficient than
 
 ```{r echo=FALSE, fig.width=5, fig.height=4}
 
+#do a boxplot of mpg, grouped by transmission type
 ggplot(mtcars,aes(factor(am),mpg)) + 
   geom_boxplot() + 
   xlab("Manual (0) or Automatic (1)") + 
@@ -78,6 +87,7 @@ A Welch Two Sample t-test shows that the probability that the difference in the 
 
 ```{r echo=FALSE}
 
+#do a t-test of the mean of mpg grouped by transmission type and report the results in a pretty table
 pander(t.test(mtcars$mpg~mtcars$am))
 
 ```
@@ -88,10 +98,13 @@ We create an index that compares the mpg in each car to the most efficient car i
 
 ```{r echo=FALSE, fig.width=5, fig.height=4}
 
+#create a new efficiency index which measures the mpg of each car as a percentage of the maximum
 mtcars$eff_index <- mtcars$mpg/max(mtcars$mpg,na.rm=FALSE)*100
 
+#create a categorical variable based on the above index
 mtcars$eff_cat <- cut(mtcars$eff_index,c(0,25,50,75,100),labels=c("very low","low","high","very high"))
 
+#do a boxplot of horsepower grouped by efficiency category
 ggplot(mtcars,aes(factor(eff_cat),hp)) + geom_boxplot() +
   xlab("Efficiency Category") + 
   ylab("Horsepower") + 
@@ -104,6 +117,7 @@ Our dataset now looks like this:
 
 ```{r echo=FALSE}
 
+#output the first few rows of our data in a pretty table
 kable(head(mtcars))
 
 ```
